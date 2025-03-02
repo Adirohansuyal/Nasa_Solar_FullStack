@@ -10,6 +10,7 @@ COPY exoplanet_model.pkl ./
 COPY scaler.pkl ./
 COPY spacee.jpg ./
 COPY spaceee.jpg /app/
+COPY nasa.jpg /app/
 
 COPY app.py ./
 
