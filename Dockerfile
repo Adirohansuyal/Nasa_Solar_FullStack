@@ -9,6 +9,8 @@ COPY requirements.txt ./
 COPY exoplanet_model.pkl ./
 COPY scaler.pkl ./
 COPY spacee.jpg ./
+COPY spaceee.jpg /app/
+
 COPY app.py ./
 
 # Install dependencies
