@@ -28,14 +28,22 @@ def get_base64_image(image_path):
         return base64.b64encode(img_file.read()).decode()
 
 # Convert local image to base64
+<<<<<<< HEAD
 image_path = "spaceee.jpg"  # Ensure this file is in the same directory as app.py
+=======
+image_path = "spacee.jpg"  # Ensure this file is in the same directory as app.py
+>>>>>>> 8a52670 (new)
 base64_image = get_base64_image(image_path)
 
 # Apply a space-themed background using base64 image
 space_bg = f"""
     <style>
     .stApp {{
+<<<<<<< HEAD
         background-image: url("data:spaceee/jpg;base64,{base64_image}");
+=======
+        background-image: url("data:spacee/jpg;base64,{base64_image}");
+>>>>>>> 8a52670 (new)
         background-size: cover;
         background-attachment: fixed;
         background-position: center;
