@@ -68,7 +68,7 @@ space_bg = f"""
 st.markdown(space_bg, unsafe_allow_html=True)
 
 # App Title
-st.title("✨ Exoplanet Classificatio App")
+st.title("✨ Exoplanet Classification App")
 st.write("### Predict whether a celestial body is an exoplanet based on given features.")
 
 # Sidebar for user input
