@@ -9,15 +9,13 @@ import base64
 @st.cache_resource
 def load_model():
     with open("exoplanet_model.pkl", "rb") as file:
-        model = pickle.load(file)
-    return model
+        return pickle.load(file)
 
 # Load the scaler
 @st.cache_resource
 def load_scaler():
     with open("scaler.pkl", "rb") as file:
-        scaler = pickle.load(file)
-    return scaler
+        return pickle.load(file)
 
 model = load_model()
 scaler = load_scaler()
@@ -27,34 +25,24 @@ def get_base64_image(image_path):
     with open(image_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()
 
-# Convert local image to base64
-<<<<<<< HEAD
-image_path = "spaceee.jpg"  # Ensure this file is in the same directory as app.py
-=======
-image_path = "spacee.jpg"  # Ensure this file is in the same directory as app.py
->>>>>>> 8a52670 (new)
+# Convert local image to base64 for background
+image_path = "spacee.jpg"  # Ensure this file exists in the same directory
 base64_image = get_base64_image(image_path)
 
 # Apply a space-themed background using base64 image
 space_bg = f"""
     <style>
     .stApp {{
-<<<<<<< HEAD
-        background-image: url("data:spaceee/jpg;base64,{base64_image}");
-=======
-        background-image: url("data:spacee/jpg;base64,{base64_image}");
->>>>>>> 8a52670 (new)
+        background-image: url("data:image/jpg;base64,{base64_image}");
         background-size: cover;
         background-attachment: fixed;
         background-position: center;
         font-family: 'Arial', sans-serif;
     }}
-    
     .stTitle, .stMarkdown, .stSubheader {{
         color: #FFFFFF;
         text-align: center;
     }}
-    
     .stButton>button {{
         background: linear-gradient(90deg, #6a11cb, #2575fc);
         color: white;
@@ -67,17 +55,11 @@ space_bg = f"""
     .stButton>button:hover {{
         background: linear-gradient(90deg, #2575fc, #6a11cb);
     }}
-    
-    .css-1d391kg {{
-        color: white;
-    }}
-    
     .sidebar .sidebar-content {{
         background-color: rgba(0, 0, 0, 0.7);
         padding: 20px;
         border-radius: 10px;
     }}
-    
     .sidebar .stMarkdown, .sidebar .stHeader {{
         color: #FFFFFF;
     }}
@@ -85,9 +67,11 @@ space_bg = f"""
 """
 st.markdown(space_bg, unsafe_allow_html=True)
 
+# App Title
 st.title("✨ Exoplanet Classification App")
 st.write("### Predict whether a celestial body is an exoplanet based on given features.")
 
+# Sidebar for user input
 st.sidebar.header("🌌 Enter Features")
 feature_names = [
     "Orbital Period", "Planet Radius", "Planet Mass", "Stellar Flux", "Equilibrium Temperature",
@@ -101,11 +85,7 @@ feature_names = [
     "Bond Albedo", "Cloud Fraction", "Atmospheric Composition", "Tidal Locking", "Magnetic Field Strength"
 ]
 
-feature_values = []
-for feature in feature_names:
-    value = st.sidebar.number_input(feature, min_value=0.0)
-    feature_values.append(value)
-
+feature_values = [st.sidebar.number_input(feature, min_value=0.0) for feature in feature_names]
 input_data = np.array([feature_values])
 scaled_input = scaler.transform(input_data)
 
